@@ -47,6 +47,20 @@ module.exports = {
       res.send(error);
     }
   },
+  getUser: async (req, res) => {
+    const _id = req.params.id;
+    try {
+      const user = await User.findOne({ _id });
+      res.send({
+        message: "1 user selected",
+        searchUser: user,
+      });
+    } catch (error) {
+      console.log(error);
+
+      res.send(error);
+    }
+  },
   userRegistration: async (req, res) => {
     const { name, email, password } = req.body;
 
