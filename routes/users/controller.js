@@ -19,10 +19,8 @@ module.exports = {
   },
   editUser: async (req, res) => {
     const _id = req.params.id;
-    const { name, email, password } = req.body;
-
     try {
-      await User.findOneAndUpdate({ _id }, { name, email, password });
+      await User.findOneAndUpdate({ _id }, { $set: { ...req.body } });
       const users = await User.find();
       res.send({
         message: "1 user has been updated",
