@@ -9,7 +9,7 @@ module.exports = {
 
       res.send({
         message: "1 user has been deleted",
-        result: deletedUser,
+        deleted: deletedUser,
       });
     } catch (error) {
       console.log(error);
@@ -22,14 +22,11 @@ module.exports = {
     const { name, email, password } = req.body;
 
     try {
-      const editedUser = await User.findOneAndUpdate(
-        { _id },
-        { name, email, password }
-      );
-
+      await User.findOneAndUpdate({ _id }, { name, email, password });
+      const users = await User.find();
       res.send({
         message: "1 user has been updated",
-        result: editedUser,
+        updatedUsers: users,
       });
     } catch (error) {
       console.log(error);
