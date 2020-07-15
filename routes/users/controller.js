@@ -53,7 +53,7 @@ module.exports = {
       const user = await User.findOne({ _id });
       res.send({
         message: "1 user selected",
-        searchUser: user,
+        user: user,
       });
     } catch (error) {
       console.log(error);
